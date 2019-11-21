@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="UP.css">
+  <link rel="stylesheet" href="cumulative.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+    function convert(){
+      
+            
+            var xmlhttp= new XMLHttpRequest();
+            xmlhttp.open("GET","https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=3678659ce6b94238b2e586f0065be359", true);
+            
+            xmlhttp.send();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState === 4 && this.status === 200 )
+                {
+                    var result=this.responseText;
+                    var jsResult=JSON.parse(result);
+                    
+          
+          console.log(jsResult);
+                    
+                    
+                        var i;
+                        for(i=0;i<jsResult.articles.length;i++)
+                        {
+                       
+                        var para = document.createElement("P");
+                        para.innerText ="AUTHOR : "+JSON.stringify(jsResult.articles[i].author); 
+                        document.body.appendChild(para);
+                        var para = document.createElement("P");
+                        para.innerText ="TITLE : "+JSON.stringify(jsResult.articles[i].title); 
+                        document.body.appendChild(para);
+                        var para = document.createElement("P");
+                        para.innerText ="DATE PUBLISHED : "+JSON.stringify(jsResult.articles[i].publishedAt); 
+                        document.body.appendChild(para);
+                        var para = document.createElement("P");
+                        para.innerText ="DESCRIPTION : "+JSON.stringify(jsResult.articles[i].description); 
+                        document.body.appendChild(para);
+                        var para = document.createElement("P");
+                        para.innerText ="CONTENT : "+JSON.stringify(jsResult.articles[i].content); 
+                        document.body.appendChild(para);
+                        var para = document.createElement("P");
+                        para.innerText ="URL : "+JSON.stringify(jsResult.articles[i].url); 
+                        document.body.appendChild(para);
+                        var img = document.createElement('img'); 
+                        img.setAttribute("src",jsResult.articles[i].urlToImage); 
+                        document.body.appendChild(img); 
+                        var para = document.createElement("P");
+                        para.innerText ="";
+                        document.body.appendChild(para);
+                    }
+                    
+                    
+                }
+      }
+    } </script>
+    </head>
+<body>
+   <nav  class="navbar navbar-expand-md bg-info navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="UP.html">University Press</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse justify-content-center menu" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="test.html">Journals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="test1.html">News</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="test2.html">Quotes</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="test3.html">Jobs</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form>
+<input type="button" value="Get News" onclick="convert()">
+</form>
+
+</body>
+</html>

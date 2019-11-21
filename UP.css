@@ -1,0 +1,33 @@
+
+body
+{
+	background-color: rgb(240,240,240);
+}
+.con-a
+{
+	background-color: gray;
+	
+}
+.con-b
+{
+	background-color: #e6005c;
+}
+.con-c
+{
+	background-color: #3973ac;
+}
+.con-d
+{
+	background-color: #7a7a52
+}
+*
+{
+	margin:0px;
+	padding:0px;
+}
+.con-a:hover,.con-b:hover,.con-c:hover,.con-d:hover
+{
+	
+	opacity: 0.6;
+
+}

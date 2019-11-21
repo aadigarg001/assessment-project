@@ -1,0 +1,96 @@
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="UP.css">
+  <link rel="stylesheet" href="cumulative.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+	function convert(){
+      
+			
+			var xmlhttp= new XMLHttpRequest();
+			xmlhttp.open("GET","https://core.ac.uk:443/api-v2/articles/search/article?page=1&pageSize=10&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=PdsODnWV5EjU3zHxfuoYivA0wG6a2Krt", true);
+			
+			xmlhttp.send();
+			xmlhttp.onreadystatechange=function(){
+				if(this.readyState === 4 && this.status === 200 )
+				{
+					var result=this.responseText;
+					var jsResult=JSON.parse(result);
+					
+          
+          console.log(jsResult);
+					
+          			
+          				var i;
+          				for(i=0;i<jsResult.data.length;i++)
+          				{
+          				var para = document.createElement("P");
+  						para.innerText ="ID : "+JSON.stringify(jsResult.data[i].id); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="AUTHORS : "+JSON.stringify(jsResult.data[i].authors); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="CITATIONS : "+JSON.stringify(jsResult.data[i].citations); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="DATE PUBLISHED : "+JSON.stringify(jsResult.data[i].datePublished); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="DESCRIPTION : "+JSON.stringify(jsResult.data[i].description); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="FULLTEXT : "+JSON.stringify(jsResult.data[i].fulltext); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="DOWNLOAD URL : "+JSON.stringify(jsResult.data[i].downloadUrl); 
+  						document.body.appendChild(para);
+  						var para = document.createElement("P");
+  						para.innerText ="";
+  						document.body.appendChild(para);
+  					}
+					
+					
+				}
+      }
+    } </script>
+	</head>
+<body>
+	<nav  class="navbar navbar-expand-md bg-info navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="UP.html">University Press</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse justify-content-center menu" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="test.html">Journals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="test1.html">News</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="test2.html">Quotes</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="test3.html">Jobs</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form>
+<input type="button" value="Get Articles" onclick="convert()">
+</form>
+
+</body>
+</html>
